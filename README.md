@@ -17,7 +17,7 @@ Table of Contents
 Installation
 
 1. Clone the repository:
-   git clone https://github.com/yourusername/sci-flix-api.git
+   git clone https://github.com/ambrosia-fish/sci-flix.git
    cd sci-flix-api
 
 2. Install dependencies:
