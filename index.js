@@ -199,40 +199,54 @@ app.patch('/users/:username', passport.authenticate('jwt', { session: false }), 
 app.post('/users/:username/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
     const username = req.params.username;
-    const movieId = req.body.movieId; // Changed from newFavorite to be more clear
+    const movieId = req.body.movieId;
+
+    console.log('Received request:', {
+      username,
+      movieId,
+      body: req.body
+    });
 
     if (!movieId) {
+      console.log('Movie ID missing from request');
       return res.status(400).json({ error: 'Movie ID is required' });
     }
 
     const user = await Users.findOne({ username });
     if (!user) {
+      console.log('User not found:', username);
       return res.status(404).json({ error: 'User not found' });
     }
 
+    console.log('Current user favorites:', user.favoriteMovies);
     const isFavorite = user.favoriteMovies.includes(movieId);
-    let updatedUser;
+    console.log('Is movie already favorite?', isFavorite);
 
+    let updatedUser;
     if (isFavorite) {
-      // Remove from favorites
       updatedUser = await Users.findOneAndUpdate(
         { username },
         { $pull: { favoriteMovies: movieId } },
         { new: true }
       );
-      res.json({ isFavorite: false, message: 'Movie removed from favorites' });
+      console.log('Movie removed from favorites');
     } else {
-      // Add to favorites
       updatedUser = await Users.findOneAndUpdate(
         { username },
         { $push: { favoriteMovies: movieId } },
         { new: true }
       );
-      res.json({ isFavorite: true, message: 'Movie added to favorites' });
+      console.log('Movie added to favorites');
     }
+
+    console.log('Updated user favorites:', updatedUser.favoriteMovies);
+    res.json({
+      isFavorite: !isFavorite,
+      message: isFavorite ? 'Movie removed from favorites' : 'Movie added to favorites'
+    });
   } catch (err) {
-    console.error('Favorite toggle error:', err);
-    res.status(500).json({ error: 'Server Error' });
+    console.error('Detailed error:', err);
+    res.status(500).json({ error: err.message || 'Server Error' });
   }
 });
 
