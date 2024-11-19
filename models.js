@@ -24,8 +24,8 @@ let userSchema = mongoose.Schema({
     password: {type: String, required: true},
     email: {type: String, required: true},
     birthday: Date,
-    favoriteMovies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }]
-});
+    favoriteMovies: [{ type: String }]  // Changed from ObjectId to String
+  });
 
 
 userSchema.statics.hashPassword = function(password) {

@@ -201,52 +201,53 @@ app.post('/users/:username/favorites', passport.authenticate('jwt', { session: f
     const username = req.params.username;
     const movieId = req.body.movieId;
 
-    console.log('Received request:', {
+    console.log('Request details:', {
       username,
-      movieId,
-      body: req.body
+      movieIdToToggle: movieId
     });
 
     if (!movieId) {
-      console.log('Movie ID missing from request');
       return res.status(400).json({ error: 'Movie ID is required' });
     }
 
     const user = await Users.findOne({ username });
     if (!user) {
-      console.log('User not found:', username);
       return res.status(404).json({ error: 'User not found' });
     }
 
-    console.log('Current user favorites:', user.favoriteMovies);
+    console.log('Current favorites:', user.favoriteMovies);
+
+    // Check if movie is already in favorites
     const isFavorite = user.favoriteMovies.includes(movieId);
-    console.log('Is movie already favorite?', isFavorite);
 
     let updatedUser;
     if (isFavorite) {
+      // Remove from favorites
       updatedUser = await Users.findOneAndUpdate(
         { username },
         { $pull: { favoriteMovies: movieId } },
         { new: true }
       );
-      console.log('Movie removed from favorites');
     } else {
+      // Add to favorites
       updatedUser = await Users.findOneAndUpdate(
         { username },
         { $push: { favoriteMovies: movieId } },
         { new: true }
       );
-      console.log('Movie added to favorites');
     }
 
-    console.log('Updated user favorites:', updatedUser.favoriteMovies);
+    console.log('Updated favorites:', updatedUser.favoriteMovies);
+    
     res.json({
       isFavorite: !isFavorite,
-      message: isFavorite ? 'Movie removed from favorites' : 'Movie added to favorites'
+      message: isFavorite ? 'Movie removed from favorites' : 'Movie added to favorites',
+      favorites: updatedUser.favoriteMovies
     });
+
   } catch (err) {
-    console.error('Detailed error:', err);
-    res.status(500).json({ error: err.message || 'Server Error' });
+    console.error('Favorite toggle error:', err);
+    res.status(500).json({ error: err.message });
   }
 });
 
