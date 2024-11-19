@@ -197,34 +197,42 @@ app.patch('/users/:username', passport.authenticate('jwt', { session: false }), 
 });
 
 app.post('/users/:username/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
-  const { username } = req.params;
-  const { newFavorite } = req.body;
-
   try {
-    const user = await Users.findOne({ username });
+    const username = req.params.username;
+    const movieId = req.body.movieId; // Changed from newFavorite to be more clear
 
+    if (!movieId) {
+      return res.status(400).json({ error: 'Movie ID is required' });
+    }
+
+    const user = await Users.findOne({ username });
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    const isFavorite = user.favoriteMovies.includes(newFavorite);
+    const isFavorite = user.favoriteMovies.includes(movieId);
+    let updatedUser;
 
     if (isFavorite) {
-      // If movie is already a favorite, remove it
-      await Users.findOneAndUpdate({ username }, {
-        $pull: { favoriteMovies: newFavorite }
-      }, { new: true });
-      res.json({ message: 'Movie removed from favorites' });
+      // Remove from favorites
+      updatedUser = await Users.findOneAndUpdate(
+        { username },
+        { $pull: { favoriteMovies: movieId } },
+        { new: true }
+      );
+      res.json({ isFavorite: false, message: 'Movie removed from favorites' });
     } else {
-      // If movie is not a favorite, add it
-      await Users.findOneAndUpdate({ username }, {
-        $push: { favoriteMovies: newFavorite }
-      }, { new: true });
-      res.json({ message: 'Movie added to favorites' });
+      // Add to favorites
+      updatedUser = await Users.findOneAndUpdate(
+        { username },
+        { $push: { favoriteMovies: movieId } },
+        { new: true }
+      );
+      res.json({ isFavorite: true, message: 'Movie added to favorites' });
     }
   } catch (err) {
-    console.error(err);
-    res.status(500).send('Server Error');
+    console.error('Favorite toggle error:', err);
+    res.status(500).json({ error: 'Server Error' });
   }
 });
 
