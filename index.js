@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const cors = require('cors');
 
 app.use(cors({
-  origin: ['http://localhost:8080', 'http://localhost:1234', 'https://sci-flix.netlify.app', 'http://localhost:4200', 'https://ambrosia-fish.github.io', 'https://sciflix-angular-client.feztech.io'],
+  origin: ['http://localhost:8080', 'http://localhost:1234', 'https://sci-flix.netlify.app', 'http://localhost:4200', 'https://ambrosia-fish.github.io', 'https://sciflix-angular-client.feztech.io','https://sciflix.feztech.io'],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
