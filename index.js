@@ -6,11 +6,23 @@ const mongoose = require('mongoose');
 const Models = require('./models.js');
 const bodyParser = require('body-parser');
 
+// Load environment variables if dotenv isn't loaded via -r flag
+if (!process.env.JWT_SECRET) {
+  try {
+    require('dotenv').config();
+  } catch (error) {
+    console.warn('dotenv not found, environment variables must be set manually');
+  }
+}
+
 // Create model objects for movies and users
 const Movies = Models.Movie;
 const Users = Models.User;
 
-mongoose.connect('mongodb+srv://josefameur:greenstar@sci-flix.lzvzqan.mongodb.net/sci-flix?retryWrites=true&w=majority&appName=Sci-Flix')
+// Connect to MongoDB using environment variables for credentials
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/sci-flix';
+
+mongoose.connect(mongoURI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Could not connect to MongoDB...', err));
 
