@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sci-flix - About</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                color: #333;
+            }
+            .container {
+                width: 90%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            header {
+                background-color: #062f4f;
+                color: white;
+                padding: 20px 0;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .site-title {
+                margin: 0;
+                font-size: 2rem;
+            }
+            .site-description {
+                margin-top: 5px;
+                opacity: 0.8;
+            }
+            nav {
+                background-color: #0d3b66;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            nav ul {
+                display: flex;
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+            nav li {
+                padding: 0;
+            }
+            nav a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 20px;
+                text-decoration: none;
+                transition: background-color 0.3s;
+            }
+            nav a:hover {
+                background-color: #16506b;
+            }
+            nav a.active {
+                background-color: #1c77ac;
+            }
+            .content {
+                padding: 20px 0;
+            }
+            .feature {
+                margin-bottom: 30px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid #eee;
+            }
+            footer {
+                background-color: #062f4f;
+                color: white;
+                text-align: center;
+                padding: 20px 0;
+                margin-top: 40px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <h1 class="site-title">Sci-Flix</h1>
+                <p class="site-description">A database and API of sci-fi movies</p>
+            </div>
+        </header>
+        
+        <nav>
+            <div class="container">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/movies.html">Movies</a></li>
+                    <li><a href="/genres.html">Genres</a></li>
+                    <li><a href="/directors.html">Directors</a></li>
+                    <li><a href="/about.html" class="active">About</a></li>
+                    <li><a href="/documentation.html">API Documentation</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="container">
+            <section class="content">
+                <h1>About Sci-Flix</h1>
+                <p>Welcome to Sci-Flix, your ultimate database of science fiction films. We're passionate about sci-fi cinema and have created this platform to provide comprehensive information about the genre's most influential and interesting works.</p>
+                
+                <div class="feature">
+                    <h2>Our Mission</h2>
+                    <p>Sci-Flix aims to catalog and preserve information about science fiction cinema, making it accessible to fans, researchers, and film enthusiasts worldwide. We believe that science fiction, as a genre, offers unique perspectives on technology, society, and humanity's future, and deserves dedicated study and appreciation.</p>
+                </div>
+                
+                <div class="feature">
+                    <h2>Features</h2>
+                    <ul>
+                        <li><strong>Comprehensive Database:</strong> Access information about hundreds of sci-fi films, from early classics to modern masterpieces.</li>
+                        <li><strong>Detailed Information:</strong> Each film entry includes plot summaries, director information, genre classifications, and more.</li>
+                        <li><strong>User Accounts:</strong> Create an account to save your favorite films and customize your experience.</li>
+                        <li><strong>API Access:</strong> Developers can access our database programmatically through our well-documented API.</li>
+                    </ul>
+                </div>
+                
+                <div class="feature">
+                    <h2>Technology</h2>
+                    <p>Sci-Flix is built using modern web technologies, with a Node.js backend, MongoDB database, and responsive frontend design. Our API is RESTful and provides JSON responses for easy integration with other applications.</p>
+                </div>
+                
+                <div class="feature">
+                    <h2>Contact Us</h2>
+                    <p>Have questions, suggestions, or feedback? We'd love to hear from you! Contact our team at <a href="mailto:contact@sci-flix.com">contact@sci-flix.com</a>.</p>
+                </div>
+            </section>
+        </div>
+        
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 Sci-Flix. All rights reserved.</p>
+                <p><a href="/about.html" style="color: white;">About</a> | <a href="/documentation.html" style="color: white;">API Documentation</a> | <a href="mailto:contact@sci-flix.com" style="color: white;">Contact</a></p>
+            </div>
+        </footer>
+    </body>
+</html>
