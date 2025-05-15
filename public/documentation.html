@@ -1,10 +1,392 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sci-flix - About</title>
+        <title>Sci-flix - Documentation</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                color: #333;
+            }
+            .container {
+                width: 90%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            header {
+                background-color: #062f4f;
+                color: white;
+                padding: 20px 0;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .site-title {
+                margin: 0;
+                font-size: 2rem;
+            }
+            .site-description {
+                margin-top: 5px;
+                opacity: 0.8;
+            }
+            nav {
+                background-color: #0d3b66;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            nav ul {
+                display: flex;
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+            nav li {
+                padding: 0;
+            }
+            nav a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 20px;
+                text-decoration: none;
+                transition: background-color 0.3s;
+            }
+            nav a:hover {
+                background-color: #16506b;
+            }
+            nav a.active {
+                background-color: #1c77ac;
+            }
+            pre {
+                background-color: #f4f4f4;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                padding: 15px;
+                overflow: auto;
+            }
+            .endpoint {
+                margin-bottom: 30px;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 20px;
+            }
+            .endpoint h2 {
+                color: #0d3b66;
+                margin-top: 30px;
+            }
+            .endpoint ul {
+                list-style-type: none;
+                padding-left: 0;
+            }
+            .endpoint li {
+                margin-bottom: 10px;
+            }
+            footer {
+                background-color: #062f4f;
+                color: white;
+                text-align: center;
+                padding: 20px 0;
+                margin-top: 40px;
+            }
+        </style>
     </head>
     <body>
-        <h1>What is Sci-Flix?</h1>
-        <p>Sci-Flix is a database of sci-fi films.</p>
+        <header>
+            <div class="container">
+                <h1 class="site-title">Sci-Flix</h1>
+                <p class="site-description">A database and API of sci-fi movies</p>
+            </div>
+        </header>
+        
+        <nav>
+            <div class="container">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/movies.html">Movies</a></li>
+                    <li><a href="/genres.html">Genres</a></li>
+                    <li><a href="/directors.html">Directors</a></li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/documentation.html" class="active">API Documentation</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="container">
+            <section id="intro">
+                <h1>Sci-Flix API Documentation</h1>
+                <p>Welcome to the Sci-Flix API documentation. This guide provides information about available endpoints and examples for interacting with the Sci-Flix database of sci-fi movies.</p>
+                
+                <h2>API Base URL</h2>
+                <p>All API requests should be made to: <code>http://localhost:8080/</code> for local development or <code>https://sci-flix.feztech.io/</code> for production.</p>
+                
+                <h2>Quick Navigation</h2>
+                <ul>
+                    <li><a href="#movies">Movie Endpoints</a></li>
+                    <li><a href="#genres">Genre Endpoints</a></li>
+                    <li><a href="#directors">Director Endpoints</a></li>
+                    <li><a href="#users">User Endpoints</a></li>
+                </ul>
+            </section>
+            
+            <section id="movies">
+                <h1>Movie Endpoints</h1>
+                
+                <div class="endpoint">
+                    <h2>Request: List of all movies</h2>
+                    <ul>
+                        <li><strong>URL:</strong> http://localhost:8080/movies/</li>
+                        <li><strong>Method:</strong> GET</li>
+                        <li><strong>Response:</strong> JSON list of all movies</li>
+                        <li><strong>Example:</strong> http://localhost:8080/movies/</li>
+                        <li><strong>Example Response:</strong></li>
+                    </ul>
+                    <pre>
+{
+    "Genre": {
+        "Name": "Epic",
+        "Description": "Epic films are a style of filmmaking with large-scale, sweeping scope, and spectacle."
+    },
+    "Director": {
+        "Name": "Stanley Kubrick",
+        "Bio": "Stanley Kubrick was an American film director, producer, screenwriter, and photographer.",
+        "Birth": "1928-01-01T00:00:00.000Z",
+        "Death": "1999-01-01T00:00:00.000Z"
+    },
+    "Actiors": [],
+    "_id": "6661eee0e9e6e3b6dacdcdf6",
+    "Title": "2001: A Space Odyssey",
+    "Description": "2001: A Space Odyssey is a visually stunning science fiction epic exploring human evolution, AI and cosmic mysteries during a voyage to Jupiter triggered by a mysterious alien monolith found on the Moon."
+},
+{
+    "Genre": {
+        "Name": "Neo-noir",
+        "Description": "Neo-noir is a modern or contemporary motion picture rendition of film noir, emphasizing cynical attitudes and sexual motivations."
+    },
+    "Director": {
+        "Name": "Ridley Scott",
+        "Bio": "Sir Ridley Scott is an English film director and producer, known for his stylish visuals and innovative storytelling.",
+        "Birth": "1937-01-01T00:00:00.000Z",
+        "Death": null
+    },
+    "Actiors": [],
+    "_id": "6661eee0e9e6e3b6dacdcdf7",
+    "Title": "Blade Runner",
+    "Description": "In a dystopian future, a blade runner hunts down rogue androids while grappling with his own humanity."
+}
+...
+                    </pre>
+                </div>
+                
+                <div class="endpoint">
+                    <h2>Request: Request movie Metadata</h2>
+                    <ul>
+                        <li><strong>URL:</strong> http://localhost:8080/movies/:movieName/</li>
+                        <li><strong>Method:</strong> GET</li>
+                        <li><strong>Response:</strong> JSON object with movie title, year, director, subgenre, and description</li>
+                        <li><strong>Example Request:</strong> "http://localhost:8080/movies/Blade%20Runner/"</li>
+                        <li><strong>Example Response:</strong></li>
+                    </ul>
+                    <pre>
+{
+    "Genre": {
+        "Name": "Neo-noir",
+        "Description": "Neo-noir is a modern or contemporary motion picture rendition of film noir, emphasizing cynical attitudes and sexual motivations."
+    },
+    "Director": {
+        "Name": "Ridley Scott",
+        "Bio": "Sir Ridley Scott is an English film director and producer, known for his stylish visuals and innovative storytelling.",
+        "Birth": "1937-01-01T00:00:00.000Z",
+        "Death": null
+    },
+    "Actiors": [],
+    "_id": "6661eee0e9e6e3b6dacdcdf7",
+    "Title": "Blade Runner",
+    "Description": "In a dystopian future, a blade runner hunts down rogue androids while grappling with his own humanity."
+}
+                    </pre>
+                </div>
+            </section>
+            
+            <section id="genres">
+                <h1>Genre Endpoints</h1>
+                
+                <div class="endpoint">
+                    <h2>Request: Get genre description by name</h2>
+                    <ul>
+                        <li><strong>URL:</strong> http://localhost:8080/movies/genres/:genreName/</li>
+                        <li><strong>Method:</strong> GET</li>
+                        <li><strong>Response:</strong> JSON object with genre description</li>
+                        <li><strong>Example Request:</strong> "http://localhost:8080/movies/genres/Epic/"</li>
+                        <li><strong>Example Response:</strong></li>
+                    </ul>
+                    <pre>
+{
+    "genreDescription": "Epic films are a style of filmmaking with large-scale, sweeping scope, and spectacle."
+}
+                    </pre>
+                </div>
+            </section>
+            
+            <section id="directors">
+                <h1>Director Endpoints</h1>
+                
+                <div class="endpoint">
+                    <h2>Request: Get director data by name</h2>
+                    <ul>
+                        <li><strong>URL:</strong> http://localhost:8080/movies/directors/:directorName/</li>
+                        <li><strong>Method:</strong> GET</li>
+                        <li><strong>Response:</strong> JSON object with director bio, birth year, and death year (if applicable)</li>
+                        <li><strong>Example Request:</strong> "http://localhost:8080/directors/Ridley%20Scott/"</li>
+                        <li><strong>Example Response:</strong></li>
+                    </ul>
+                    <pre>
+{
+    "Name": "Ridley Scott",
+    "Bio": "Sir Ridley Scott is an English film director and producer, known for his stylish visuals and innovative storytelling.",
+    "Birth": "1937-01-01T00:00:00.000Z",
+    "Death": null
+}
+                    </pre>
+                </div>
+            </section>
+            
+            <section id="users">
+                <h1>User Endpoints</h1>
+                
+                <div class="endpoint">
+                    <h2>Request: Register new user</h2>
+                    <ul>
+                        <li><strong>URL:</strong> http://localhost:8080/users/</li>
+                        <li><strong>Method:</strong> POST</li>
+                        <li><strong>Body:</strong> JSON object with user information</li>
+                        <li><strong>Example Request Body:</strong></li>
+                    </ul>
+                    <pre>
+{
+    "username":"NewUserTest123",
+    "password":"supertoughpassword",
+    "email":"first.last@gmail.com"
+}
+                    </pre>
+                    <ul>
+                        <li><strong>Example Response:</strong></li>
+                    </ul>
+                    <pre>
+{
+    "username": "NewUserTest123",
+    "password": "supertoughpassword",
+    "email": "first.last@gmail.com",
+    "FavoriteMovies": [],
+    "_id": "666369f556d09b268460cf97",
+    "__v": 0
+}
+                    </pre>
+                </div>
+                
+                <div class="endpoint">
+                    <h2>Request: Update user info (username)</h2>
+                    <ul>
+                        <li><strong>URL:</strong> http://localhost:8080/users/:username/</li>
+                        <li><strong>Method:</strong> PUT</li>
+                        <li><strong>Body:</strong> JSON object with updated user information</li>
+                        <li><strong>Example Request Body:</strong></li>
+                    </ul>
+                    <pre>
+{
+    "username": "updatedUsername"
+}
+                    </pre>
+                    <ul>
+                        <li><strong>Example Response:</strong></li>
+                    </ul>
+                    <pre>
+{
+    "_id": "666369f556d09b268460cf97",
+    "username": "UpdatedUserName",
+    "password": "EvEnMoReStRoNgPaSsWoRd",
+    "email": "first.last@gmail.com",
+    "FavoriteMovies": [],
+    "__v": 0
+}
+                    </pre>
+                </div>
+                
+                <div class="endpoint">
+                    <h2>Request: Add movie to user's list of favorites</h2>
+                    <ul>
+                        <li><strong>URL:</strong> http://localhost:8080/users/:username/favorites/:movieName/</li>
+                        <li><strong>Method:</strong> POST</li>
+                        <li><strong>Body:</strong> JSON object with newFavorite parameter with a movieId value</li>
+                        <li><strong>Example Request Body:</strong></li>
+                    </ul>
+                    <pre>
+{
+    "newFavorite":"6661eee0e9e6e3b6dacdcdf8"
+}
+                    </pre>
+                    <ul>
+                        <li><strong>Response:</strong> JSON object of user with updated favorited list</li>
+                        <li><strong>Example Request:</strong> "http://localhost:8080/users/ambrosia.fish/favorites/Alien/"</li>
+                        <li><strong>Example Response:</strong></li>
+                    </ul>
+                    <pre>
+{
+    "_id": "666359f3bebc0af4e6c1283d",
+    "username": "ambrosia.fish",
+    "password": "supertoughpassword",
+    "email": "fish.ambrosia@gmail.com",
+    "FavoriteMovies": [
+        "6661eee0e9e6e3b6dacdcdff",
+        "6661eee0e9e6e3b6dacdcdf8"
+    ],
+    "__v": 0
+}
+                    </pre>
+                </div>
+                
+                <div class="endpoint">
+                    <h2>Request: Remove movie from user's list of favorites</h2>
+                    <ul>
+                        <li><strong>URL:</strong> http://localhost:8080/users/:username/favorites/:movieName/</li>
+                        <li><strong>Method:</strong> DELETE</li>
+                        <li><strong>Response:</strong> JSON object of user with updated favorited list</li>
+                        <li><strong>Example Request:</strong> "http://localhost:8080/users/ambrosia.fish/favorites/Alien/"</li>
+                        <li><strong>Example Response:</strong></li>
+                    </ul>
+                    <pre>
+{
+    "_id": "666359f3bebc0af4e6c1283d",
+    "username": "ambrosia.fish",
+    "password": "supertoughpassword",
+    "email": "fish.ambrosia@gmail.com",
+    "FavoriteMovies": [
+        "6661eee0e9e6e3b6dacdcdff",
+    ],
+    "__v": 0
+}
+                    </pre>
+                </div>
+                
+                <div class="endpoint">
+                    <h2>Request: Deregister user</h2>
+                    <ul>
+                        <li><strong>URL:</strong> http://localhost:8080/users/:username/</li>
+                        <li><strong>Method:</strong> DELETE</li>
+                        <li><strong>Response:</strong> JSON object with success message</li>
+                        <li><strong>Example Request:</strong> "http://localhost:8080/users/johndoe/"</li>
+                        <li><strong>Example Response:</strong></li>
+                    </ul>
+                    <pre>User successfully deleted</pre>
+                </div>
+            </section>
+        </div>
+        
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 Sci-Flix. All rights reserved.</p>
+                <p><a href="/about.html" style="color: white;">About</a> | <a href="/documentation.html" style="color: white;">API Documentation</a> | <a href="mailto:contact@sci-flix.com" style="color: white;">Contact</a></p>
+            </div>
+        </footer>
     </body>
 </html>
