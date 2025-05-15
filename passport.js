@@ -1,3 +1,12 @@
+// Load environment variables if dotenv isn't loaded via -r flag
+if (!process.env.JWT_SECRET) {
+  try {
+    require('dotenv').config();
+  } catch (error) {
+    console.warn('dotenv not found, environment variables must be set manually');
+  }
+}
+
 const passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy,
   Models = require('./models.js'),
@@ -40,9 +49,12 @@ passport.use(
   )
 );
 
+// Load environment variables or use defaults securely
+const jwtSecret = process.env.JWT_SECRET || require('crypto').randomBytes(64).toString('hex');
+
 passport.use(new JWTStrategy({
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-  secretOrKey: 'your_jwt_secret'
+  secretOrKey: jwtSecret
 }, async (jwtPayload, callback) => {
   return await Users.findById(jwtPayload._id)
     .then((user) => {

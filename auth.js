@@ -1,17 +1,27 @@
-const jwtSecret = 'your_jwt_secret'; // 
+// Load environment variables if dotenv isn't loaded via -r flag
+if (!process.env.JWT_SECRET) {
+  try {
+    require('dotenv').config();
+  } catch (error) {
+    console.warn('dotenv not found, environment variables must be set manually');
+  }
+}
+
+// Load environment variables or use defaults securely
+const jwtSecret = process.env.JWT_SECRET || require('crypto').randomBytes(64).toString('hex');
 
 const jwt = require('jsonwebtoken'),
   passport = require('passport');
 
-require('./passport'); 
+require('./passport');
 
 
 // generate jwt token
 let generateJWTToken = (user) => {
   return jwt.sign(user, jwtSecret, {
     subject: user.username,
-    expiresIn: '7d', 
-    algorithm: 'HS256' 
+    expiresIn: '7d',
+    algorithm: 'HS256'
   });
 }
 

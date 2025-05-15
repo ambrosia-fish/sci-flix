@@ -1,28 +1,27 @@
 [
-    {
-      "username": "ambrosia.fish",
-      "password": "kopahound",
-      "email": "josefameur@gmail.com"
-    },
-    {
-      "username": "weizerhund",
-      "password": "zoomies",
-      "email": "hound.garcia@gmail.com"
-    },
-    {
-      "username": "krakatoa",
-      "password": "houndkopa",
-      "email": "the.sammyagarcia@gmail.com"
-    },
-    {
-      "username": "kopa.broketail",
-      "password": "hungry247",
-      "email": "k0pa.br0k5ta1l@gmail.com"
-    },
-    {
-        "username": "valorous_hero",
-        "password": "honor&glory",
-        "email": "azith.paladin@gmail.com"
-      }   
-  ]
-  
+  {
+    "username": "ambrosia.fish",
+    "password": "[HASHED]",
+    "email": "josefameur@gmail.com"
+  },
+  {
+    "username": "weizerhund",
+    "password": "[HASHED]",
+    "email": "hound.garcia@gmail.com"
+  },
+  {
+    "username": "krakatoa",
+    "password": "[HASHED]",
+    "email": "the.sammyagarcia@gmail.com"
+  },
+  {
+    "username": "kopa.broketail",
+    "password": "[HASHED]",
+    "email": "k0pa.br0k5ta1l@gmail.com"
+  },
+  {
+    "username": "valorous_hero",
+    "password": "[HASHED]",
+    "email": "azith.paladin@gmail.com"
+  }   
+]
