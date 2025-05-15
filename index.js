@@ -6,11 +6,19 @@ const mongoose = require('mongoose');
 const Models = require('./models.js');
 const bodyParser = require('body-parser');
 
+// Load environment variables
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 // Create model objects for movies and users
 const Movies = Models.Movie;
 const Users = Models.User;
 
-mongoose.connect('mongodb+srv://josefameur:greenstar@sci-flix.lzvzqan.mongodb.net/sci-flix?retryWrites=true&w=majority&appName=Sci-Flix')
+// Get MongoDB connection string from environment variables
+const mongoURI = process.env.MONGODB_URI;
+
+mongoose.connect(mongoURI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Could not connect to MongoDB...', err));
 
